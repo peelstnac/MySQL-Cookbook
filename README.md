@@ -314,7 +314,29 @@ LIMIT 10 1;
 ```
 
 ## Subqueries
+* Query within a query.
+    * Inner/outer.
+    * Must be in ().
 
+## ALTER TABLE
+* Change table stuff.
+```sql
+ALTER TABLE table_name
+ADD column_1 INT AUTO_INCREMENT PRIMARY KEY,
+ADD column_2 TEXT;
+
+ALTER TABLE table_name
+MODIFY column_1 INT AUTO_INCREMENT PRIMARY KEY;
+
+ALTER TABLE table_name
+CHANGE column_1 column_0 INT AUTO_INCREMENT PRIMARY KEY;
+
+ALTER TABLE table_name
+DROP COLUMN column_2;
+
+ALTER TABLE table_name
+RENAME TO new_name;
+```
 
 ## INNER JOIN
 * Joins two tables based on a join predicate.
