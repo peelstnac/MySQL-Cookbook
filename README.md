@@ -108,3 +108,19 @@ ORDER BY
     column_1
 LIMIT 10 1;
 ```
+## INNER JOIN
+* Joins two tables based on a join predicate.
+    * Two rows combined if predicate holds.
+* Put after SELECT FROM pairing.
+```sql
+SELECT
+    t1.column_1,
+    t1.column_2,
+    t2.column_1,
+    t2.column_2
+FROM
+    table_1 t1
+INNER JOIN
+    table_2 t2
+    ON t1.column_1 = t2.column_1;
+```
