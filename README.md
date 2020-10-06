@@ -1,4 +1,6 @@
 # MySQL Cookbook
+* Not self-contained.
+
 ## USE
 * Used to select a database.
 ```bash
@@ -123,6 +125,18 @@ VALUES(some_value);
 SHOW WARNINGS;
 ```
 * If STRICT mode is on, MySQL will try to change error causing data before issuing a warning.
+
+## UPDATE
+* Updates data in a table.
+```sql
+UPDATE IGNORE table_name
+SET
+    column_1 = 100,
+    column_2 = 121,
+    column_3 = 144
+WHERE
+    column_1 = 81;
+```
 
 ## SELECT FROM
 * To select three columns from a table, use the SELECT FROM pairing.
