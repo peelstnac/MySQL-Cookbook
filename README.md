@@ -8,6 +8,14 @@ SELECT
 FROM
     table_name;
 ```
+* Can use DISTINCT to filter out duplicates.
+    * Makes sure the selected columns are unique.
+```sql
+SELECT DISTINCT
+    column_1, column_2, column_three
+FROM
+    table_name;
+```
 
 ## ORDER BY
 * Sort selected columns.
@@ -68,7 +76,7 @@ ORDER BY
     * _ for one character.
 * IN enumerates through a list.
     * [VALUE] IN (v_1, v_2, ...).
-* ISNULL predicate to check if NULL.
+* IS NULL predicate to check if NULL.
 
 ```sql
 SELECT
@@ -82,4 +90,21 @@ WHERE
     range_values IN (1, 2, 3, 4, 5))
 ORDER BY
     range_values DESC;
+```
+
+## LIMIT
+* Limits number of rows displayed.
+* LIMIT 10 OFFSET 4 (or LIMIT 10 4).
+    * OFFSET is zero-indexed.
+    * SQL reads LIMIT after ORDER BY.
+```sql
+SELECT DISTINCT
+    column_1, column_2, column_3
+FROM
+    table_name
+WHERE
+    column_1 IS NOT NULL
+ORDER BY
+    column_1
+LIMIT 10 1;
 ```
