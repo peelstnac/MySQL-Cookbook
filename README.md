@@ -138,6 +138,34 @@ WHERE
     column_1 = 81;
 ```
 
+## DELETE
+* Delete data from a table.
+```sql
+DELETE FROM table_name
+WHERE
+    column_1 = 10;
+
+DELETE FROM table_name
+ORDER BY
+    column_1
+LIMIT 10;
+```
+
+## DELETE JOIN
+```sql
+DELETE t1, t2 FROM table_1 as t1
+LEFT JOIN table_2 as t2
+    ON t1.id = t2.id;
+WHERE
+    t2.property IS NULL;
+```
+
+## REPLACE
+* Replace existing value if key collides. If no key collision or no key is given at all, insert.
+```sql
+REPLACE INTO table_name(column_1, column_2)
+VALUES(1, 1);
+```
 ## SELECT FROM
 * To select three columns from a table, use the SELECT FROM pairing.
 * MySQL reads FROM before SELECT.
@@ -169,6 +197,9 @@ ORDER BY
     column_1,
     column_2 DESC;
 ```
+
+## IFNULL()
+* Takes in two expressions. If first is NULL, return second.
 
 ## FIELD()
 * Custom sorting. ORDER BY sorts by value of column entries.
@@ -231,6 +262,40 @@ ORDER BY
     range_values DESC;
 ```
 
+## GROUP BY
+* Groups rows into summary rows.
+```sql
+SELECT column_1, COUNT(*) AS cnt
+FROM table_name
+GROUP BY column_1;
+```
+
+## Aggregate Functions
+* Functions which take in multiple values and return one.
+    * Hence "aggregate."
+* Some include AVG, COUNT, SUM, MAX, MIN.
+```sql
+SELECT AVG(price) as average_price
+FROM purchases;
+```
+
+## HAVING
+* Predicate on groups.
+* If no GROUP BY clause present, works same as WHERE.
+```sql
+SELECT
+    productName,
+    SUM(price) as total
+FROM
+    products
+GROUP BY
+    productName
+HAVING
+    total >= 100
+ORDER BY
+    total;
+```
+
 ## LIMIT
 * Limits number of rows displayed.
 * LIMIT 10 OFFSET 4 (or LIMIT 10 4).
@@ -247,6 +312,9 @@ ORDER BY
     column_1
 LIMIT 10 1;
 ```
+
+## Subqueries
+
 
 ## INNER JOIN
 * Joins two tables based on a join predicate.
