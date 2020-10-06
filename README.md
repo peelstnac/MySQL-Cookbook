@@ -96,6 +96,33 @@ VALUES
     (v_1, 'YYYY-MM-DD', DEFAULT),
     (v_3, v_4, v_5);
 ```
+* Can combine SELECT with INSERT.
+```sql
+INSERT INTO table_name(column_1, column_2, column_3)
+SELECT
+    column_1,
+    column_2,
+    column_3
+FROM
+    another_table
+WHERE
+    column_1 = 'SOME PREDICATE';
+
+INSERT INTO table_name(column_1, column_2, column_3)
+VALUES(
+    SELECT COUNT(*) column_1 FROM another_table
+);
+```
+* Can use IGNORE to omit error causing rows.
+    * For example, a row may violate UNIQUE constraint.
+    * Without IGNORE, whole insert operation is cancelled.
+```sql
+INSERT IGNORE INTO table_name(column_1)
+VALUES(some_value);
+
+SHOW WARNINGS;
+```
+* If STRICT mode is on, MySQL will try to change error causing data before issuing a warning.
 
 ## SELECT FROM
 * To select three columns from a table, use the SELECT FROM pairing.
