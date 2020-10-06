@@ -48,8 +48,33 @@ CREATE TABLE table_name(
 * Common limiters: PRIMARY KEY, FOREIGN KEY, AUTO_INCREMENT, UNIQUE, CHECK, DEFAULT.
 * Describe the table using ```DESCRIBE table_name;```.
 
-## FORIEGN KEY
+## FOREIGN KEY
+* Used to maintain relational integrity between tables.
+    * One customer may have many purchases.
+    * Each purchose only relates to one customer.
+    * FOREIGN keys can help maintain this relationship.
+    * FOREIGN KEY takes in a list of columns that match with the list REFERENCES takes in.
+```sql
+CREATE TABLE customer(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    cname VARCHAR(255) NOT NULL
+);
 
+CREATE TABLE purchases(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    CONSTRAINT fk_constraint
+    FOREIGN KEY (customer_id)
+        REFERENCES customer(id)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+);
+```
+* Different ON UPDATE/DELETE modifiers.
+    * CASCADE, RESTRICT, SET NULL.
+    * Default is RESTRICT.
+    * CASCADE mimicks the action.
+    * RESTRICT prevents the action done on parent.
+    * SET NULL sets null upon action.
 
 ## SELECT FROM
 * To select three columns from a table, use the SELECT FROM pairing.
