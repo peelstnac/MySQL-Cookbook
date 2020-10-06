@@ -1,4 +1,56 @@
 # MySQL Cookbook
+## USE
+* Used to select a database.
+```bash
+mysql -u username -p
+USE database_name;
+```
+or
+```bash
+mysql -u username -D database_name -p
+```
+* SELECT the current database.
+```sql
+SELECT database();
+```
+
+## CREATE DATABASE
+* Does exactly what it says.
+* Optional IF NOT EXISTS clause.
+```sql
+CREATE DATABASE IF NOT EXISTS database_name;
+```
+
+## SHOW DATABASES
+* Does exactly what it says.
+
+## DROP DATABASE
+* Deletes a database.
+* Optional IF EXISTS clause.
+```sql
+CREATE DATABASE db;
+DROP DATABASE IF EXISTS db;
+```
+
+## CREATE TABLE
+* Does exactly what it says.
+* Optional IF NOT EXISTS clause.
+* Loads of options. Consult documentation.
+```sql
+CREATE TABLE table_name(
+    column_1 INT AUTO_INCREMENT PRIMARY KEY,
+    column_3 VARCHAR(255) NOT NULL UNIQUE DEFAULT 'DEFAULT',
+    column_4 TEXT,
+    column_5 DECIMAL CHECK(column_5 >= 0)
+);
+```
+* Common datatypes: INT, DECIMAL, VARCHAR(), TEXT, DATE, TIMESTAMP.
+* Common limiters: PRIMARY KEY, FOREIGN KEY, AUTO_INCREMENT, UNIQUE, CHECK, DEFAULT.
+* Describe the table using ```DESCRIBE table_name;```.
+
+## FORIEGN KEY
+
+
 ## SELECT FROM
 * To select three columns from a table, use the SELECT FROM pairing.
 * MySQL reads FROM before SELECT.
@@ -50,7 +102,7 @@ ORDER BY
 
 ## AS
 * Can perform arithmetic operations with SELECT FROM pairing.
-* Use AS for column alias.
+* Use AS for column/table alias (optional).
 * Arithmetic operators are +, -, *, /, DIV (integer division), %, MOD.
 ```sql
 SELECT
@@ -108,6 +160,7 @@ ORDER BY
     column_1
 LIMIT 10 1;
 ```
+
 ## INNER JOIN
 * Joins two tables based on a join predicate.
     * Two rows combined if predicate holds.
@@ -120,9 +173,9 @@ SELECT
     t2.column_1,
     t2.column_2
 FROM
-    table_1 t1
+    table_1 AS t1
 INNER JOIN
-    table_2 t2
+    table_2 AS t2
     ON t1.column_1 = t2.column_1;
 ```
 
@@ -137,9 +190,9 @@ SELECT
     t2.column_1,
     t2.column_2
 FROM
-    table_1 t1
+    table_1 AS t1
 LEFT JOIN
-    table_2 t2
+    table_2 AS t2
     ON t1.column_1 = t2.column_1
 WHERE
     t2.column_2 IS NOT NULL;
@@ -158,6 +211,6 @@ SELECT
     t2.column_1,
     t2.column_2
 FROM
-    table_1 t1
-CROSS JOIN table_2 t2;
+    table_1 AS t1
+CROSS JOIN table_2 AS t2;
 ```
