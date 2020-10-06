@@ -111,6 +111,7 @@ LIMIT 10 1;
 ## INNER JOIN
 * Joins two tables based on a join predicate.
     * Two rows combined if predicate holds.
+    * Omission if predicate does not hold.
 * Put after SELECT FROM pairing.
 ```sql
 SELECT
@@ -123,4 +124,40 @@ FROM
 INNER JOIN
     table_2 t2
     ON t1.column_1 = t2.column_1;
+```
+
+## LEFT JOIN
+* Joins two tables based on a join predicate.
+    * Two rows combined if predicate holds.
+    * Else, combination occurs, but values in right row is NULL.
+```sql
+SELECT
+    t1.column_1,
+    t1.column_2,
+    t2.column_1,
+    t2.column_2
+FROM
+    table_1 t1
+LEFT JOIN
+    table_2 t2
+    ON t1.column_1 = t2.column_1
+WHERE
+    t2.column_2 IS NOT NULL;
+```
+* The last WHERE clause makes the LEFT JOIN same as INNER JOIN.
+
+## RIGHT JOIN
+* Same as LEFT JOIN, but right table takes priority.
+
+## CROSS JOIN
+* Returns a cartesian product.
+```sql
+SELECT
+    t1.column_1,
+    t1.column_2,
+    t2.column_1,
+    t2.column_2
+FROM
+    table_1 t1
+CROSS JOIN table_2 t2;
 ```
