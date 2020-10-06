@@ -13,6 +13,11 @@ mysql -u username -D database_name -p
 ```sql
 SELECT database();
 ```
+* SHOW stuff.
+```sql
+SHOW DATABASES;
+SHOW TABLES;
+```
 
 ## CREATE DATABASE
 * Does exactly what it says.
@@ -75,6 +80,22 @@ CREATE TABLE purchases(
     * CASCADE mimicks the action.
     * RESTRICT prevents the action done on parent.
     * SET NULL sets null upon action.
+* Disable FOREIGN KEY checks.
+    * Useful when importing data.
+    * No need to worry about import order.
+```sql
+SET foreign_key_checks = 0;
+```
+* Refer to constraint name when performing ALTER.
+
+## INSERT
+* Does exactly what it says.
+```sql
+INSERT INTO table_name(column_1, column_2, column_3)
+VALUES
+    (v_1, 'YYYY-MM-DD', DEFAULT),
+    (v_3, v_4, v_5);
+```
 
 ## SELECT FROM
 * To select three columns from a table, use the SELECT FROM pairing.
